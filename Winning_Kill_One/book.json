@@ -1,0 +1,34 @@
+{
+    "plugins": [
+        
+        "multipart",
+        "code",
+        "back-to-top-button",
+        "chapter-fold",
+        "search-pro",
+        "sharing-plus",
+        "pageview-count",
+        "page-toc-button",
+        "anchor-navigation-ex",
+        "simple-page-toc",
+        "3-ba",
+        "klipse",
+        "alerts"
+    ],
+    "pluginsConfig": {
+        "anchor-navigation-ex": {
+            "isRewritePageTitle": true,
+            "isShowTocTitleIcon": true,
+            "tocLevel1Icon": "fa fa-hand-o-right",
+            "tocLevel2Icon": "fa fa-hand-o-right",
+            "tocLevel3Icon": "fa fa-hand-o-right"
+        },
+        "simple-page-toc": {
+            "maxDepth": 3,
+            "skipFirstH1": true
+        },
+        "3-ba": {
+            "token": "xxxxxxxx"
+        }
+    }
+}

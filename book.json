@@ -1,0 +1,26 @@
+{
+    "plugins": [
+        
+        "multipart",
+        "code",
+        "back-to-top-button",
+        "chapter-fold",
+        "search-pro",
+        "sharing-plus",
+        "pageview-count",
+        "page-toc-button",
+        "simple-page-toc",
+        "3-ba",
+        "klipse",
+        "alerts"
+    ],
+    "pluginsConfig": {
+        "simple-page-toc": {
+            "maxDepth": 3,
+            "skipFirstH1": true
+        },
+        "3-ba": {
+            "token": "xxxxxxxx"
+        }
+    }
+}
