@@ -97,7 +97,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="第三节SET.html" />
+    <link rel="next" href="转换函数.html" />
     
     
     <link rel="prev" href="数学函数.html" />
@@ -356,6 +356,21 @@
                         <b>1.2.1.2.6.</b>
                     
                     字符串函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.1.2.7" data-path="转换函数.html">
+            
+                <a href="转换函数.html">
+            
+                    
+                        <b>1.2.1.2.7.</b>
+                    
+                    转换函数
             
                 </a>
             
@@ -718,12 +733,12 @@
 <p>&#x5DE6;&#x8FB9;&#x3001;&#x53F3;&#x8FB9;&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x5F00;&#x59CB;&#x622A;&#x53D6;&#x5B57;&#x7B26;&#x4E32;&#x591A;&#x5C11;&#x4F4D;</p>
 <pre class="language-"><code class="lang-sql"><span class="token keyword">LEFT</span> <span class="token punctuation">(</span> character_expression <span class="token punctuation">,</span> integer_expression <span class="token punctuation">)</span><span class="token operator">=</span>substring<span class="token punctuation">(</span>character_expression <span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span>  integer_expression <span class="token punctuation">)</span>
 </code></pre>
-<p>3&#x3001;<strong>ltrim&#x3001;rtrim</strong>  &#x53BB;&#x9664;&#x5DE6;&#x53F3;&#x7A7A;&#x683C;</p>
-<pre class="language-"><code class="lang-sql"><span class="token keyword">select</span> ltrim<span class="token punctuation">(</span><span class="token string">&apos; ABC&apos;</span><span class="token punctuation">)</span>    <span class="token comment">--&apos;ABC&apos;</span>
-<span class="token keyword">select</span> rtrim<span class="token punctuation">(</span><span class="token string">&apos;ABC &apos;</span><span class="token punctuation">)</span>    <span class="token comment">--&apos;ABC&apos;</span>
+<p>3&#x3001;<strong>LTRIM&#x3001;RTRIM</strong>  &#x53BB;&#x9664;&#x5DE6;&#x53F3;&#x7A7A;&#x683C;</p>
+<pre class="language-"><code class="lang-sql"><span class="token keyword">select</span> LTRIM<span class="token punctuation">(</span><span class="token string">&apos; ABC&apos;</span><span class="token punctuation">)</span>    <span class="token comment">--&apos;ABC&apos;</span>
+<span class="token keyword">select</span> RTRIM<span class="token punctuation">(</span><span class="token string">&apos;ABC &apos;</span><span class="token punctuation">)</span>    <span class="token comment">--&apos;ABC&apos;</span>
 </code></pre>
-<p>4&#x3001;<strong>len&#x8FD4;&#x56DE;&#x7ED9;&#x5B9A;&#x5B57;&#x7B26;&#x4E32;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x5B57;&#x7B26;&#xFF08;&#x800C;&#x4E0D;&#x662F;&#x5B57;&#x8282;&#xFF09;&#x4E2A;&#x6570;&#xFF0C;&#x5176;&#x4E2D;&#x4E0D;&#x5305;&#x542B;&#x5C3E;&#x968F;&#x7A7A;&#x683C;&#x3002;</strong></p>
-<pre class="language-"><code class="lang-sql"><span class="token keyword">select</span> <span class="token function">len</span><span class="token punctuation">(</span>hzxm<span class="token punctuation">)</span><span class="token punctuation">,</span> datalength<span class="token punctuation">(</span>rtrim<span class="token punctuation">(</span>hzxm<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>hzxm <span class="token keyword">from</span> ZY_BRSYK
+<p>4&#x3001;<strong>LEN&#x8FD4;&#x56DE;&#x7ED9;&#x5B9A;&#x5B57;&#x7B26;&#x4E32;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x5B57;&#x7B26;&#xFF08;&#x800C;&#x4E0D;&#x662F;&#x5B57;&#x8282;&#xFF09;&#x4E2A;&#x6570;&#xFF0C;&#x5176;&#x4E2D;&#x4E0D;&#x5305;&#x542B;&#x5C3E;&#x968F;&#x7A7A;&#x683C;&#x3002;</strong></p>
+<pre class="language-"><code class="lang-sql"><span class="token keyword">select</span> <span class="token function">LEN</span><span class="token punctuation">(</span>hzxm<span class="token punctuation">)</span><span class="token punctuation">,</span> datalength<span class="token punctuation">(</span>RTRIM<span class="token punctuation">(</span>hzxm<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>hzxm <span class="token keyword">from</span> ZY_BRSYK
 </code></pre>
 <table>
 <thead>
@@ -769,6 +784,9 @@
 <p><strong>[warning]</strong>
 Tips: <strong>PATINDEX</strong> &#x4E0E; <strong>CHARINDEX</strong> &#x529F;&#x80FD;&#x76F8;&#x4F3C; <strong>PATINDEX</strong> &#x652F;&#x6301;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</p>
 </blockquote>
+<p>6&#x3001;<strong>REPLACE(string_expression1,string_expression2,string_expression3)</strong> &#x5C06;&#x7B2C;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x8868;&#x8FBE;&#x5F0F;&#x4E2D;,&#x7B2C;&#x4E8C;&#x4E2A;&#x7ED9;&#x5B9A;&#x5B57;&#x7B26;&#x4E32;&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x6240;&#x6709;&#x5B9E;&#x4F8B;,&#x90FD;&#x66FF;&#x6362;&#x4E3A;&#x7B2C;&#x4E09;&#x4E2A;&#x8868;&#x8FBE;&#x5F0F;</p>
+<pre class="language-"><code class="lang-sql"><span class="token keyword">SELECT</span> <span class="token keyword">REPLACE</span><span class="token punctuation">(</span><span class="token string">&apos;2020-10-30&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;-&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;&apos;</span><span class="token punctuation">)</span> <span class="token comment">--20201030</span>
+</code></pre>
  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css"> <script>     window.klipse_settings = {         selector: ".language-klipse, .lang-eval-clojure",         selector_eval_js: ".lang-eval-js",         selector_eval_python_client: ".lang-eval-python",         selector_eval_php: ".lang-eval-php",         selector_eval_scheme: ".lang-eval-scheme",         selector_eval_ruby: ".lang-eval-ruby",         selector_reagent: ".lang-reagent",        selector_google_charts: ".lang-google-chart",        selector_es2017: ".lang-eval-es2017",        selector_jsx: ".lang-eval-jsx",        selector_transpile_jsx: ".lang-transpile-jsx",        selector_render_jsx: ".lang-render-jsx",        selector_react: ".lang-react",        selector_eval_markdown: ".lang-render-markdown",        selector_eval_lambdaway: ".lang-render-lambdaway",        selector_eval_cpp: ".lang-eval-cpp",        selector_eval_html: ".lang-render-html",        selector_sql: ".lang-eval-sql",        selector_brainfuck: "lang-eval-brainfuck",        selector_js: ".lang-transpile-cljs"    }; </script> <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
                                 
                                 </section>
@@ -817,7 +835,7 @@ Tips: <strong>PATINDEX</strong> &#x4E0E; <strong>CHARINDEX</strong> &#x529F;&#x8
                 </a>
                 
                 
-                <a href="第三节SET.html" class="navigation navigation-next " aria-label="Next page: 第三节 SET">
+                <a href="转换函数.html" class="navigation navigation-next " aria-label="Next page: 转换函数">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -828,7 +846,7 @@ Tips: <strong>PATINDEX</strong> &#x4E0E; <strong>CHARINDEX</strong> &#x529F;&#x8
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"字符串函数","level":"1.2.1.2.6","depth":4,"next":{"title":"第三节 SET","level":"1.2.1.3","depth":3,"path":"Winning_Kill_One/第三节SET.md","ref":"Winning_Kill_One/第三节SET.md","articles":[{"title":"SET","level":"1.2.1.3.1","depth":4,"path":"Winning_Kill_One/SET.md","ref":"Winning_Kill_One/SET.md","articles":[]}]},"previous":{"title":"数学函数","level":"1.2.1.2.5","depth":4,"path":"Winning_Kill_One/数学函数.md","ref":"Winning_Kill_One/数学函数.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["multipart","code","back-to-top-button","chapter-fold","search-pro","sharing-plus","pageview-count","page-toc-button","simple-page-toc","3-ba","klipse","alerts","expandable-chapters","-highlight","theme-comscore","prism","livereload"],"pluginsConfig":{"chapter-fold":{},"prism":{"css":[]},"livereload":{},"simple-page-toc":{"maxDepth":3,"skipFirstH1":true},"search-pro":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"multipart":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-comscore":{},"page-toc-button":{},"back-to-top-button":{},"pageview-count":{},"alerts":{},"3-ba":{"configuration":"auto","token":"xxxxxxxx"},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"expandable-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Winning_Kill_One/字符串函数.md","mtime":"2020-10-27T14:15:41.471Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-29T06:27:34.469Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"字符串函数","level":"1.2.1.2.6","depth":4,"next":{"title":"转换函数","level":"1.2.1.2.7","depth":4,"path":"Winning_Kill_One/转换函数.md","ref":"Winning_Kill_One/转换函数.md","articles":[]},"previous":{"title":"数学函数","level":"1.2.1.2.5","depth":4,"path":"Winning_Kill_One/数学函数.md","ref":"Winning_Kill_One/数学函数.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["multipart","code","back-to-top-button","chapter-fold","search-pro","sharing-plus","pageview-count","page-toc-button","simple-page-toc","3-ba","klipse","alerts","expandable-chapters","-highlight","theme-comscore","prism","livereload"],"pluginsConfig":{"chapter-fold":{},"prism":{"css":[]},"livereload":{},"simple-page-toc":{"maxDepth":3,"skipFirstH1":true},"search-pro":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"multipart":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-comscore":{},"page-toc-button":{},"back-to-top-button":{},"pageview-count":{},"alerts":{},"3-ba":{"configuration":"auto","token":"xxxxxxxx"},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"expandable-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Winning_Kill_One/字符串函数.md","mtime":"2020-10-30T11:06:25.854Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-30T10:21:44.203Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

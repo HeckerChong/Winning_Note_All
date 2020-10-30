@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>DELETE · GitBook</title>
+        <title>转换函数 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -97,10 +97,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="UPDATE.html" />
+    <link rel="next" href="第三节SET.html" />
     
     
-    <link rel="prev" href="SELECT.html" />
+    <link rel="prev" href="字符串函数.html" />
     
 
     </head>
@@ -207,7 +207,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.1.1.2" data-path="DELETE.html">
+        <li class="chapter " data-level="1.2.1.1.2" data-path="DELETE.html">
             
                 <a href="DELETE.html">
             
@@ -363,7 +363,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.1.2.7" data-path="转换函数.html">
+        <li class="chapter active" data-level="1.2.1.2.7" data-path="转换函数.html">
             
                 <a href="转换函数.html">
             
@@ -705,7 +705,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >DELETE</a>
+        <a href=".." >转换函数</a>
     </h1>
 </div>
 
@@ -723,32 +723,45 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x4E8C;&#x3001;delete-&#x547D;&#x4EE4;">&#x4E8C;&#x3001;DELETE &#x547D;&#x4EE4;</h1>
-<pre class="language-"><code class="lang-sql"><span class="token keyword">DELETE</span> table_or_view 
-<span class="token punctuation">[</span><span class="token keyword">FROM</span> table_sources <span class="token punctuation">]</span>
-<span class="token punctuation">[</span><span class="token keyword">WHERE</span> search_condition <span class="token punctuation">]</span>
+                                <h1 id="&#x4E03;&#x3001;&#x8F6C;&#x6362;&#x51FD;&#x6570;">&#x4E03;&#x3001;&#x8F6C;&#x6362;&#x51FD;&#x6570;</h1>
+<ul>
+<li><strong>CONVERT(data_type(length),data_to_be_converted,style)</strong></li>
+<li><strong>CAST(expression AS data_type)</strong></li>
+<li><strong>FORMAT(column_name,format)</strong></li>
+</ul>
+<p><strong>&#x793A;&#x4F8B;&#xFF1A;</strong></p>
+<ul>
+<li><strong>&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x8F6C;&#x6362;</strong></li>
+</ul>
+<pre class="language-"><code class="lang-sql"><span class="token comment">--&#x5C06;varchar&#x8F6C;&#x6362;&#x4E3A;numeric</span>
+<span class="token keyword">DECLARE</span> <span class="token variable">@i</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+<span class="token keyword">SET</span> <span class="token variable">@i</span><span class="token operator">=</span><span class="token string">&apos;12&apos;</span>
+<span class="token comment">--&#x4F7F;&#x7528;CONVERT</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">CONVERT</span><span class="token punctuation">(</span><span class="token keyword">numeric</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token variable">@i</span><span class="token punctuation">)</span>     <span class="token comment">--12.00</span>
+<span class="token comment">--&#x4F7F;&#x7528;CAST</span>
+<span class="token keyword">SELECT</span> CAST<span class="token punctuation">(</span><span class="token variable">@i</span> <span class="token keyword">AS</span> <span class="token keyword">numeric</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>     <span class="token comment">--12.00</span>
 </code></pre>
-<p>1&#x3001;&#x5220;&#x9664;&#x5168;&#x90E8;&#x884C;</p>
-<pre class="language-"><code class="lang-sql"><span class="token keyword">Delete</span> <span class="token comment">#temp = TRUNCATE TABLE #temp</span>
+<ul>
+<li><strong>&#x65E5;&#x671F;&#x683C;&#x5F0F;&#x7684;&#x8F6C;&#x6362;</strong></li>
+</ul>
+<pre class="language-"><code class="lang-sql"><span class="token comment">--&#x8F6C;&#x6362;&#x4E3A; yyyymmdd</span>
+<span class="token keyword">SELECT</span> GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">--2020-10-30 18:00:01.547</span>
+<span class="token comment">--&#x4F7F;&#x7528;CONVERT</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">CONVERT</span><span class="token punctuation">(</span><span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">112</span><span class="token punctuation">)</span>   <span class="token comment">--20201030</span>
+<span class="token comment">--&#x4F7F;&#x7528;CAST</span>
+<span class="token keyword">SELECT</span> CAST<span class="token punctuation">(</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>   <span class="token comment">--10 30 2020  6:00PM</span>
+
+<span class="token comment">--&#x5728;SQL Server2012&#x5F00;&#x59CB;&#x6709;&#x4E00;&#x4E2A;&#x683C;&#x5F0F;&#x5316;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x652F;&#x6301;datetime&#x6570;&#x636E;&#x7C7B;&#x578B;&#x7684;&#x6837;&#x5F0F;&#x683C;&#x5F0F;&#x5316;</span>
+<span class="token keyword">SELECT</span> <span class="token function">FORMAT</span><span class="token punctuation">(</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">&apos;yyyyMMdd&apos;</span><span class="token punctuation">)</span>     <span class="token comment">--20201030</span>
+
+<span class="token comment">--&#x7ED3;&#x5408;&#x591A;&#x4E2A;&#x51FD;&#x6570;&#x5C06;datetime&#x683C;&#x5F0F;&#xFF0C;&#x8F6C;&#x6362;&#x4E3A;HIS&#x5E38;&#x89C1;&#x7684;&#x65E5;&#x671F;&#x683C;&#x5F0F;</span>
+<span class="token keyword">SELECT</span> SUBSTRING<span class="token punctuation">(</span><span class="token keyword">REPLACE</span><span class="token punctuation">(</span><span class="token keyword">CONVERT</span><span class="token punctuation">(</span><span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">120</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">&apos;-&apos;</span><span class="token punctuation">,</span><span class="token string">&apos;&apos;</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token keyword">RIGHT</span><span class="token punctuation">(</span><span class="token keyword">CONVERT</span><span class="token punctuation">(</span><span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>GETDATE<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">120</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">8</span><span class="token punctuation">)</span>
 </code></pre>
-<p>&#x5982;&#x679C;&#x8981;&#x5220;&#x9664;&#x5728;&#x8868;&#x4E2D;&#x7684;&#x6240;&#x6709;&#x884C;&#xFF0C;&#x5219;<strong>TRUNCATE TABLE</strong>&#x6BD4;<strong>DELETE</strong>&#x5FEB;&#x3002;<strong>DELETE</strong>&#x4EE5;&#x7269;&#x7406;&#x65B9;&#x5F0F;&#x4E00;&#x6B21;&#x5220;&#x9664;&#x4E00;&#x884C;&#xFF0C;&#x5E76;&#x5728;&#x4E8B;&#x52A1;&#x65E5;&#x5FD7;&#x4E2D;&#x8BB0;&#x5F55;&#x6BCF;&#x4E2A;&#x5220;&#x9664;&#x7684;&#x884C;&#x3002;<strong>TRUNCATE TABLE</strong>&#x5219;&#x91CA;&#x653E;&#x6240;&#x6709;&#x4E0E;&#x8868;&#x5173;&#x8054;&#x7684;&#x9875;&#x3002;&#x56E0;&#x6B64;&#xFF0C;<strong>TRUNCATE TABLE</strong>&#x6BD4;<strong>DELETE</strong>&#x5FEB;&#x4E14;&#x9700;&#x8981;&#x7684;&#x4E8B;&#x52A1;&#x65E5;&#x5FD7;&#x7A7A;&#x95F4;&#x66F4;&#x5C11;&#x3002;</p>
 <blockquote>
-<p><strong>[warning]</strong>
-Tips:&#x6CE8;&#x610F;drop table &#x4E0E;delete &#x7684;&#x533A;&#x522B;</p>
+<p><strong>[info] Tips</strong></p>
+<p><strong>CONVERT()</strong> &#x7684;&#x7B2C;&#x4E09;&#x4E2A;&#x53C2;&#x6570;&#x662F;&#x53EF;&#x9009;&#xFF0C;<strong>CAST()</strong> &#x5728;&#x8F6C;&#x6362;&#x65E5;&#x671F;&#x683C;&#x5F0F;&#x7684;&#x65F6;&#x5019;&#x53EA;&#x80FD;&#x9ED8;&#x8BA4;&#x8F6C;&#x6362;&#x4E3A;&#x4E00;&#x79CD;&#xFF0C;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#x65E5;&#x671F;&#x6837;&#x5F0F;&#x7684;&#x53C2;&#x6570;&#x3002;
+<strong>HIS</strong> &#x91CC;&#x9762; <strong>yyyyMMddHH:mm:ss</strong> &#x8FD9;&#x4E2A;&#x683C;&#x5F0F;&#x5E76;&#x4E0D;&#x662F;SQL Server&#x6307;&#x5B9A;&#x7684;&#x4E00;&#x79CD;&#x65E5;&#x671F;&#x683C;&#x5F0F;</p>
 </blockquote>
-<p>2&#x3001;&#x5728;&#x884C;&#x96C6;&#x4E0A;&#x4F7F;&#x7528;<strong>delete</strong></p>
-<pre class="language-"><code class="lang-sql"><span class="token keyword">delete</span> <span class="token keyword">from</span> <span class="token comment">#temp where...</span>
-</code></pre>
-<p>3.&#x5728;&#x6E38;&#x6807;&#x7684;&#x5F53;&#x524D;&#x884C;&#x4E0A;&#x4F7F;&#x7528;<strong>DELETE</strong>
-&#x4E0B;&#x4F8B;&#x663E;&#x793A;&#x5728;&#x540D;&#x4E3A;<strong>cs_dxmdm</strong>&#x7684;&#x6E38;&#x6807;&#x4E0A;&#x6240;&#x505A;&#x7684;&#x5220;&#x9664;&#x3002;&#x5B83;&#x53EA;&#x5F71;&#x54CD;&#x5F53;&#x524D;&#x4ECE;&#x6E38;&#x6807;&#x63D0;&#x53D6;&#x7684;&#x5355;&#x884C;&#x3002;</p>
-<pre class="language-"><code class="lang-sql"><span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> <span class="token comment">#dxmdm</span>
-<span class="token keyword">WHERE</span> <span class="token keyword">CURRENT</span> <span class="token keyword">OF</span> cs_dxmdm
-</code></pre>
-<p>4&#x3001;&#x636E;&#x4E0E;&#x5173;&#x8054;&#x8868;&#x3001;&#x5B50;&#x67E5;&#x8BE2;&#x4E0A;&#x4F7F;&#x7528;<strong>delete</strong></p>
-<pre class="language-"><code class="lang-sql"><span class="token keyword">delete</span> ZY_BRSYK
-<span class="token keyword">from</span> ZY_BRSYK a<span class="token punctuation">,</span>ZYB_BRYJK b
-<span class="token keyword">where</span> a<span class="token punctuation">.</span>syxh<span class="token operator">=</span>b<span class="token punctuation">.</span>syxh <span class="token operator">and</span> a<span class="token punctuation">.</span>brzt<span class="token operator">=</span><span class="token number">9</span>
-</code></pre>
  <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css"> <script>     window.klipse_settings = {         selector: ".language-klipse, .lang-eval-clojure",         selector_eval_js: ".lang-eval-js",         selector_eval_python_client: ".lang-eval-python",         selector_eval_php: ".lang-eval-php",         selector_eval_scheme: ".lang-eval-scheme",         selector_eval_ruby: ".lang-eval-ruby",         selector_reagent: ".lang-reagent",        selector_google_charts: ".lang-google-chart",        selector_es2017: ".lang-eval-es2017",        selector_jsx: ".lang-eval-jsx",        selector_transpile_jsx: ".lang-transpile-jsx",        selector_render_jsx: ".lang-render-jsx",        selector_react: ".lang-react",        selector_eval_markdown: ".lang-render-markdown",        selector_eval_lambdaway: ".lang-render-lambdaway",        selector_eval_cpp: ".lang-eval-cpp",        selector_eval_html: ".lang-render-html",        selector_sql: ".lang-eval-sql",        selector_brainfuck: "lang-eval-brainfuck",        selector_js: ".lang-transpile-cljs"    }; </script> <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
                                 
                                 </section>
@@ -792,12 +805,12 @@ Tips:&#x6CE8;&#x610F;drop table &#x4E0E;delete &#x7684;&#x533A;&#x522B;</p>
 
             
                 
-                <a href="SELECT.html" class="navigation navigation-prev " aria-label="Previous page: SELECT">
+                <a href="字符串函数.html" class="navigation navigation-prev " aria-label="Previous page: 字符串函数">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="UPDATE.html" class="navigation navigation-next " aria-label="Next page: UPDATE">
+                <a href="第三节SET.html" class="navigation navigation-next " aria-label="Next page: 第三节 SET">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -808,7 +821,7 @@ Tips:&#x6CE8;&#x610F;drop table &#x4E0E;delete &#x7684;&#x533A;&#x522B;</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"DELETE","level":"1.2.1.1.2","depth":4,"next":{"title":"UPDATE","level":"1.2.1.1.3","depth":4,"path":"Winning_Kill_One/UPDATE.md","ref":"Winning_Kill_One/UPDATE.md","articles":[]},"previous":{"title":"SELECT","level":"1.2.1.1.1","depth":4,"path":"Winning_Kill_One/SELECT.md","ref":"Winning_Kill_One/SELECT.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["multipart","code","back-to-top-button","chapter-fold","search-pro","sharing-plus","pageview-count","page-toc-button","simple-page-toc","3-ba","klipse","alerts","expandable-chapters","-highlight","theme-comscore","prism","livereload"],"pluginsConfig":{"chapter-fold":{},"prism":{"css":[]},"livereload":{},"simple-page-toc":{"maxDepth":3,"skipFirstH1":true},"search-pro":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"multipart":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-comscore":{},"page-toc-button":{},"back-to-top-button":{},"pageview-count":{},"alerts":{},"3-ba":{"configuration":"auto","token":"xxxxxxxx"},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"expandable-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Winning_Kill_One/DELETE.md","mtime":"2020-10-29T05:10:34.085Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-30T10:21:44.203Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"转换函数","level":"1.2.1.2.7","depth":4,"next":{"title":"第三节 SET","level":"1.2.1.3","depth":3,"path":"Winning_Kill_One/第三节SET.md","ref":"Winning_Kill_One/第三节SET.md","articles":[{"title":"SET","level":"1.2.1.3.1","depth":4,"path":"Winning_Kill_One/SET.md","ref":"Winning_Kill_One/SET.md","articles":[]}]},"previous":{"title":"字符串函数","level":"1.2.1.2.6","depth":4,"path":"Winning_Kill_One/字符串函数.md","ref":"Winning_Kill_One/字符串函数.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["multipart","code","back-to-top-button","chapter-fold","search-pro","sharing-plus","pageview-count","page-toc-button","simple-page-toc","3-ba","klipse","alerts","expandable-chapters","-highlight","theme-comscore","prism","livereload"],"pluginsConfig":{"chapter-fold":{},"prism":{"css":[]},"livereload":{},"simple-page-toc":{"maxDepth":3,"skipFirstH1":true},"search-pro":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"multipart":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-comscore":{},"page-toc-button":{},"back-to-top-button":{},"pageview-count":{},"alerts":{},"3-ba":{"configuration":"auto","token":"xxxxxxxx"},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"expandable-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Winning_Kill_One/转换函数.md","mtime":"2020-10-30T11:22:27.931Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-30T10:21:44.203Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
